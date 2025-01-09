@@ -11,6 +11,13 @@ from .serializers import RegisterSerializer, ProfileSerializer
 
 from .models import Profile
 
+from django.core.mail import send_mail
+from django.urls import reverse
+
+from django_rest_passwordreset.models import ResetPasswordToken
+from django_rest_passwordreset.signals import reset_password_token_created
+
+
 # Create your views here.
 
 
@@ -74,3 +81,67 @@ class UserProfileView(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ForgotPasswordView(APIView):
+    def post(self, request):
+        email = request.data.get('email')
+        user = User.objects.filter(email=email).first()
+        if not user:
+            return Response({'message': 'User does not exist'}, status=status.HTTP_404_NOT_FOUND)
+
+        token = ResetPasswordToken.objects.create(user=user)
+        reset_link = request.build_absolute_uri(reverse('reset-password', args=[token.key]))
+
+        # Send reset_link via email
+        send_mail(
+            'Password Reset Request',
+            f'Click the link to reset your password: {reset_link}',
+            'noreply@example.com',
+            [email],
+            fail_silently=False,
+        )
+
+        return Response({'message': 'Password reset link sent'}, status=status.HTTP_200_OK)
+
+    def get(self, request, token):
+        try:
+            token = ResetPasswordToken.objects.get(key=token)
+        except ResetPasswordToken.DoesNotExist:
+            return Response({'message': 'Invalid token'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        return Response({'message': 'Token is valid'}, status=status.HTTP_200_OK)
+
+
+class ResetPasswordView(APIView):
+    def post(self, request, token):
+        try:
+            token = ResetPasswordToken.objects.get(key=token)
+        except ResetPasswordToken.DoesNotExist:
+            return Response({'message': 'Invalid token'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        new_password = request.data.get('new_password')
+        user = token.user
+        user.set_password(new_password)
+        user.save()
+        token.delete()
+
+        return Response({'message': 'Password reset successful'}, status=status.HTTP_200_OK)
+
+class ChangePasswordView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        user = request.user
+        current_password = request.data.get('current_password')
+        new_password = request.data.get('new_password')
+
+        if not user.check_password(current_password):
+            return Response({'message': 'Invalid current password'}, status=status.HTTP_400_BAD_REQUEST)
+
+        user.set_password(new_password)
+        user.save()
+
+        return Response({'message': 'Password change successful'}, status=status.HTTP_200_OK)
+
+
