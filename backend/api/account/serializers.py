@@ -24,3 +24,14 @@ class RegisterSerializer(serializers.ModelSerializer):
         )
         Profile.objects.create(user=user, phone_number=phone_number)
         return user
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ['phone_number', 'preferred_currency', 'photo']
+        extra_kwargs = {
+            'phone_number': {'required': False},
+            'photo': {'required', False},
+            'preferred_currency': {'required': False}
+        }
