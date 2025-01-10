@@ -59,3 +59,5 @@ coverage.xml
 staticfiles/
 media/
 
+api/account/migrations/
+api/expense/migrations/

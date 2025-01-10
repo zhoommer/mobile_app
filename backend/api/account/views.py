@@ -13,6 +13,7 @@ from django.contrib.auth import authenticate
 
 from django.core.mail import send_mail
 from django.urls import reverse
+from django.core.exceptions import MultipleObjectsReturned
 
 from django_rest_passwordreset.models import ResetPasswordToken
 from django_rest_passwordreset.signals import reset_password_token_created
@@ -38,6 +39,7 @@ class LoginView(APIView):
     def post(self, request):
         username = request.data.get('username')
         password = request.data.get('password')
+
         user = authenticate(username=username, password=password)
         if user is not None:
             refresh = RefreshToken.for_user(user)
@@ -143,5 +145,4 @@ class ChangePasswordView(APIView):
         user.save()
 
         return Response({'message': 'Password change successful'}, status=status.HTTP_200_OK)
-
 
