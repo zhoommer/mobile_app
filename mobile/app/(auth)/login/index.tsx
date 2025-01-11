@@ -1,11 +1,15 @@
-import { View, StyleSheet, TextInput, Text } from "react-native";
+import { View, StyleSheet } from "react-native";
+import LoginButton from "@/components/atoms/buttons/LoginButton";
+import UsernameInput from "@/components/atoms/inputs/UsernameInput";
+import PasswordInput from "@/components/atoms/inputs/PasswordInput";
 
 export default function LoginScreen() {
   return (
     <View style={styles.container}>
-      <View>
-        <Text>Username</Text>
-        <TextInput style={styles.textInput} autoFocus />
+      <View style={styles.container_box}>
+        <UsernameInput />
+        <PasswordInput />
+        <LoginButton />
       </View>
     </View>
   );
@@ -15,9 +19,11 @@ const styles = StyleSheet.create({
   container: {
     height: 800,
     backgroundColor: "#ddd",
+    padding: 20,
   },
-  textInput: {
-    backgroundColor: "#222",
-    color: "#ddd",
+  container_box: {
+    borderRadius: 20,
+    padding: 20,
+    backgroundColor: "#eee",
   },
 });
