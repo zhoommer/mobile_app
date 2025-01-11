@@ -10,7 +10,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class UserCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = UserCategory
-        fields = ['id', 'user', 'category', 'total_limit']
+        fields = ['id', 'category', 'total_limit']
 
 
 class ExpenseSerializer(serializers.ModelSerializer):
