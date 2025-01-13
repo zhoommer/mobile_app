@@ -5,7 +5,7 @@ export const textInputStyle = StyleSheet.create({
     backgroundColor: "#fff",
     color: "#000",
     borderRadius: 10,
-    padding: 10,
+    padding: 15,
     paddingLeft: 60,
   },
 });

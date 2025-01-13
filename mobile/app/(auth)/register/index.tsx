@@ -1,5 +1,10 @@
-import { Text } from "react-native";
+import { Link } from "expo-router";
+import { View } from "react-native";
 
 export default function RegisterScreen() {
-  return <Text>Register Screen</Text>;
+  return (
+    <View style={{ marginTop: 50 }}>
+      <Link href={"/(auth)/login"}>Back to login</Link>
+    </View>
+  );
 }

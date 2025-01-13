@@ -1,4 +1,4 @@
-import { AuthProvider } from "@/contexts/AuthContext";
+import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
@@ -23,12 +23,24 @@ export default function RootLayout() {
     return null;
   }
 
+  const Navigation = () => {
+    const { user } = useAuth();
+    console.log("IS_AUTH: ", user?.isAuthenticated);
+
+    return (
+      <Stack screenOptions={{ headerShown: false }}>
+        {user?.isAuthenticated ? (
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        ) : (
+          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        )}
+      </Stack>
+    );
+  };
+
   return (
     <AuthProvider>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index" />
-        <Stack.Screen name="(auth)/login/index" />
-      </Stack>
+      <Navigation />
     </AuthProvider>
   );
 }

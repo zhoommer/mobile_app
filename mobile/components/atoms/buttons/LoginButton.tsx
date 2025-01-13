@@ -1,8 +1,12 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
-export default function LoginButton() {
+interface IProps {
+  handleSubmit: any;
+}
+
+export default function LoginButton(props: IProps) {
   return (
-    <TouchableOpacity style={styles.btn}>
+    <TouchableOpacity style={styles.btn} onPress={() => props.handleSubmit()}>
       <Text style={styles.text}>Login</Text>
     </TouchableOpacity>
   );

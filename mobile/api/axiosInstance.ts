@@ -7,7 +7,7 @@ import type {
 import { getToken } from "@/utils/tokenActions";
 
 const axiosClient: AxiosInstance = axios.create({
-  baseURL: "http://localhost:8080/api",
+  baseURL: "http://10.0.2.2:8000/api",
   headers: {
     "Content-Type": "application/json",
   },
@@ -19,8 +19,6 @@ axiosClient.interceptors.request.use(
     let token = getToken();
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
-    } else {
-      config.headers.Authorization = "No Auth";
     }
     return config;
   },
@@ -36,7 +34,7 @@ axiosClient.interceptors.response.use(
   },
   (error) => {
     if (error.response && error.response.status === 401) {
-      localStorage.removeItem("token"); // Çıkış işlemi
+      console.log("UNAUTHORIZATED");
     } else if (error.response && error.response.status === 500) {
       console.log(error.response);
     }

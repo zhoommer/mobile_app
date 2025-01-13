@@ -1,17 +1,19 @@
 import * as SecureStore from "expo-secure-store";
 
-export async function getToken() {
+export const getToken = async (): Promise<string | null> => {
   try {
     const token = await SecureStore.getItemAsync("token");
-    if (token) {
-      console.log("Token retrieved", token);
-      return token;
-    } else {
-      console.log("No token found!");
-      return null;
-    }
+    return token;
   } catch (error) {
-    console.log("Error retrieving token: ", error);
+    console.error("Error retrieving token:", error);
     return null;
   }
-}
+};
+
+export const setToken = async (token: string): Promise<void> => {
+  try {
+    await SecureStore.setItemAsync("token", token);
+  } catch (error) {
+    console.error("Error saving token:", error);
+  }
+};
