@@ -1,11 +1,20 @@
 import { StyleSheet } from "react-native";
+import { useTheme } from "@/contexts/ThemeContext";
 
-export const textInputStyle = StyleSheet.create({
-  input: {
-    backgroundColor: "transparent",
-    color: "#000",
-    borderColor: "#fff",
-    borderBottomWidth: 3,
-    paddingLeft: 60,
-  },
-});
+export default function useInputTheme() {
+  const { theme } = useTheme();
+
+  const textInputStyle = StyleSheet.create({
+    input: {
+      backgroundColor: "transparent",
+      color: theme.colors.text,
+      borderColor: theme.colors.border,
+      borderBottomWidth: 3,
+      paddingLeft: 60,
+    },
+  });
+
+  return {
+    textInputStyle,
+  };
+}

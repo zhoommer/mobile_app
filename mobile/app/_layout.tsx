@@ -2,8 +2,9 @@ import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import "react-native-reanimated";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -38,7 +39,9 @@ export default function RootLayout() {
 
   return (
     <AuthProvider>
-      <Navigation />
+      <ThemeProvider>
+        <Navigation />
+      </ThemeProvider>
     </AuthProvider>
   );
 }

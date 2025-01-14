@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useField } from "formik";
-import { textInputStyle } from "@/styles/TextInputStyle";
-import { errorMessage } from "@/styles/ErrorMessage";
+import useInputTheme from "@/styles/TextInputStyle";
+import useErrorTheme from "@/styles/ErrorMessage";
 import { View, TextInput, Text } from "react-native";
 import LockIcon from "../atoms/icons/LockIcon";
 import EyeIcon from "../atoms/icons/EyeIcon";
@@ -10,6 +10,8 @@ import EyeOffIcon from "../atoms/icons/EyeOffIcon";
 export default function PasswordInput() {
   const [field, meta] = useField("password");
   const [showPassword, setShowPassword] = useState(false);
+  const { textInputStyle } = useInputTheme();
+  const { errorMessage } = useErrorTheme();
 
   function toggleShowPassword() {
     setShowPassword(!showPassword);

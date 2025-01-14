@@ -1,11 +1,12 @@
 import Icon from "@expo/vector-icons/Feather";
-import { iconStyle } from "@/styles/IconStyle";
+import useIconTheme from "@/styles/IconStyle";
 
 interface IProps {
   toggleShow: () => void;
 }
 
 export default function EyeIcon(props: IProps) {
+  const { iconStyle } = useIconTheme();
   return (
     <Icon
       name="eye"

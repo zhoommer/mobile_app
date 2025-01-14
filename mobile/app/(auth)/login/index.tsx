@@ -4,12 +4,20 @@ import { LinearGradient } from "expo-linear-gradient";
 import Circle from "@/components/atoms/circles/Circle";
 import LoginUserIcon from "@/components/atoms/icons/LoginUserIcon";
 import HalfCircle from "@/components/atoms/circles/HalfCircle";
-import { loginScreenStyle as styles } from "@/styles/LoginScreenStyle";
+import useLoginTheme from "@/styles/LoginScreenStyle";
+import { useTheme } from "@/contexts/ThemeContext";
+import { darkTheme } from "@/utils/themes";
 
 export default function LoginScreen() {
+  const { theme } = useTheme();
+  const { styles } = useLoginTheme();
   return (
     <LinearGradient
-      colors={["rgba(84,178,216,1)", "rgba(40,98,172,1)"]}
+      colors={
+        theme === darkTheme
+          ? ["rgba(125,135,237,1)", "rgba(27,30,61,1)"]
+          : ["rgba(84,178,216,1)", "rgba(40,98,172,1)"]
+      }
       start={{ x: 0, y: 0 }}
       end={{ x: 0, y: 1 }}
       style={styles.container}
