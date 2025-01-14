@@ -1,29 +1,27 @@
 import { Link } from "expo-router";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet } from "react-native";
 
 export default function RegisterButton() {
   return (
-    <TouchableOpacity style={styles.btn}>
-      <Link href={"/(auth)/register"} style={styles.text}>
-        Register
-      </Link>
-    </TouchableOpacity>
+    <Link href={"/(auth)/register"} style={styles.text}>
+      Create an account
+    </Link>
   );
 }
 
 const styles = StyleSheet.create({
-  btn: {
-    display: "flex",
-    alignItems: "center",
-    borderRadius: 10,
-    backgroundColor: "#14b8a6",
-    paddingVertical: 10,
-    marginTop: 40,
-  },
   text: {
     color: "#fff",
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 500,
     letterSpacing: 1,
+    textDecorationStyle: "solid",
+    textDecorationColor: "#fff",
+    textDecorationLine: "underline",
+    textAlign: "center",
+    marginTop: 40,
+    padding: 10,
+    borderRadius: 30,
+    backgroundColor: "#64b2d8",
   },
 });

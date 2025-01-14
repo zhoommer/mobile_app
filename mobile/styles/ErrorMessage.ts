@@ -5,8 +5,8 @@ export const errorMessage = StyleSheet.create({
     position: "absolute",
     bottom: -25,
     left: 20,
-    color: "#dc2626",
+    color: "#1b1e3d",
     fontSize: 14,
-    fontWeight: 600,
+    fontWeight: 800,
   },
 });

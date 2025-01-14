@@ -1,27 +1,33 @@
 import LoginForm from "@/components/templates/LoginForm";
-import { View, StyleSheet } from "react-native";
+import { View, Text } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import Circle from "@/components/atoms/circles/Circle";
+import LoginUserIcon from "@/components/atoms/icons/LoginUserIcon";
+import HalfCircle from "@/components/atoms/circles/HalfCircle";
+import { loginScreenStyle as styles } from "@/styles/LoginScreenStyle";
 
 export default function LoginScreen() {
   return (
-    <View style={styles.container}>
-      <View style={styles.container_box}>
+    <LinearGradient
+      colors={["rgba(84,178,216,1)", "rgba(40,98,172,1)"]}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 0, y: 1 }}
+      style={styles.container}
+    >
+      <View style={styles.box_top}>
+        <Text style={styles.box_top_title}>Welcome</Text>
+        <View style={styles.iconBox}>
+          <View style={styles.iconBoxInner}>
+            <LoginUserIcon />
+          </View>
+          <Circle />
+          <HalfCircle />
+        </View>
+      </View>
+
+      <View style={styles.box_bottom}>
         <LoginForm />
       </View>
-    </View>
+    </LinearGradient>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    borderRadius: 40,
-    height: 800,
-    backgroundColor: "#ddd",
-    padding: 20,
-    marginTop: 20,
-  },
-  container_box: {
-    borderRadius: 20,
-    padding: 20,
-    backgroundColor: "#eee",
-  },
-});

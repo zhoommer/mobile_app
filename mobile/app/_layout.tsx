@@ -25,8 +25,6 @@ export default function RootLayout() {
 
   const Navigation = () => {
     const { user } = useAuth();
-    console.log("IS_AUTH: ", user?.isAuthenticated);
-
     return (
       <Stack screenOptions={{ headerShown: false }}>
         {user?.isAuthenticated ? (

@@ -2,10 +2,10 @@ import { StyleSheet } from "react-native";
 
 export const textInputStyle = StyleSheet.create({
   input: {
-    backgroundColor: "#fff",
+    backgroundColor: "transparent",
     color: "#000",
-    borderRadius: 10,
-    padding: 15,
+    borderColor: "#fff",
+    borderBottomWidth: 3,
     paddingLeft: 60,
   },
 });

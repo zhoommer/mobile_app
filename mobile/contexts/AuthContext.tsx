@@ -1,15 +1,10 @@
-import React, {
-  createContext,
-  useState,
-  useEffect,
-  useContext,
-  ReactNode,
-} from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
+import { getToken, setToken } from "@/utils/tokenActions";
+import { useRouter } from "expo-router";
 import * as SecureStore from "expo-secure-store";
 import { AuthService } from "@/api/services/authService";
+import Loading from "@/components/atoms/spinners/Loading";
 import type { LoginRequest } from "@/types/api/request/loginRequest";
-import { getToken, setToken } from "@/utils/tokenActions";
-import { Text } from "react-native";
 
 interface AuthContextData {
   user: User | null;
@@ -26,11 +21,12 @@ interface User {
 const AuthContext = createContext<AuthContextData | undefined>(undefined);
 
 interface AuthProviderProps {
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const authService = new AuthService();
+  const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -49,13 +45,16 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, []);
 
   const signIn = async (credentials: LoginRequest) => {
+    setLoading(true);
     try {
       const response = await authService.login(credentials);
       await setToken(response.access);
       setUser({ token: response.access, isAuthenticated: true });
+      router.push("/(tabs)");
     } catch (error) {
       console.log(error);
     } finally {
+      setLoading(false);
     }
   };
 
@@ -66,7 +65,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   return (
     <AuthContext.Provider value={{ user, loading, signIn, signOut }}>
-      {loading ? <Text>Loading...</Text> : children}
+      {loading ? <Loading /> : children}
     </AuthContext.Provider>
   );
 };
