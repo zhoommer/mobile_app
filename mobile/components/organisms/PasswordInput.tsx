@@ -1,17 +1,22 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useField } from "formik";
 import useInputTheme from "@/styles/TextInputStyle";
-import useErrorTheme from "@/styles/ErrorMessage";
-import { View, TextInput, Text } from "react-native";
+import { View, TextInput } from "react-native";
 import LockIcon from "../atoms/icons/LockIcon";
 import EyeIcon from "../atoms/icons/EyeIcon";
 import EyeOffIcon from "../atoms/icons/EyeOffIcon";
 
-export default function PasswordInput() {
-  const [field, meta] = useField("password");
+interface IProps {
+  name: string;
+  placeholder?: string;
+}
+
+export default function PasswordInput(props: IProps) {
+  const [field, meta] = useField(props.name);
   const [showPassword, setShowPassword] = useState(false);
-  const { textInputStyle } = useInputTheme();
-  const { errorMessage } = useErrorTheme();
+  const { textInputStyle } = useInputTheme(
+    meta.error && meta.touched ? true : false,
+  );
 
   function toggleShowPassword() {
     setShowPassword(!showPassword);
@@ -19,16 +24,14 @@ export default function PasswordInput() {
   return (
     <View>
       <TextInput
-        onChangeText={field.onChange("password")}
-        onBlur={field.onBlur("password")}
+        onChangeText={field.onChange(props.name)}
+        onBlur={field.onBlur(props.name)}
         value={field.value}
-        placeholder="Password"
+        placeholder={props.placeholder}
+        placeholderTextColor={meta.error && meta.touched ? "#f44336" : "#fff"}
         style={textInputStyle.input}
         secureTextEntry={!showPassword}
       />
-      {meta.error && meta.touched && (
-        <Text style={errorMessage.error}>{meta.error}</Text>
-      )}
       <LockIcon />
       {showPassword ? (
         <EyeIcon toggleShow={toggleShowPassword} />

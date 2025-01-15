@@ -3,13 +3,12 @@ import useLoginForm from "@/hooks/useLoginForm";
 import { Formik } from "formik";
 import { View } from "react-native";
 import LoginButton from "../atoms/buttons/LoginButton";
-import RegisterButton from "../atoms/buttons/RegisterButton";
 import PasswordInput from "../organisms/PasswordInput";
-import ConnectWithGoogleButton from "../atoms/buttons/ConnectWithGoogle";
 import UserIcon from "../atoms/icons/UserIcon";
 import TextInputComponent from "../organisms/TextInput";
+import EmailIcon from "../atoms/icons/EmailIcon";
 
-export default function LoginForm() {
+export default function RegisterForm() {
   const { loading } = useAuth();
   const { initialState, validationSchema, handleLogin } = useLoginForm();
 
@@ -20,37 +19,49 @@ export default function LoginForm() {
         onSubmit={(values) => handleLogin(values)}
         validationSchema={validationSchema}
       >
-        {({ handleSubmit, errors, touched }) => (
+        {({ handleSubmit }) => (
           <View>
             <View>
               <TextInputComponent
                 name="username"
-                placeholder={
-                  errors.username && touched.username
-                    ? "Username is required"
-                    : "Username"
-                }
+                placeholder="Username"
                 icon={<UserIcon />}
               />
             </View>
-            <View style={{ marginTop: 35 }}>
-              <PasswordInput
-                name="password"
-                placeholder={
-                  errors.password && touched.password
-                    ? "Password is required"
-                    : "Password"
-                }
+            <View>
+              <TextInputComponent
+                name="email"
+                placeholder="Email"
+                icon={<EmailIcon />}
               />
             </View>
+
+            <View>
+              <TextInputComponent
+                name="first_name"
+                placeholder="First Name"
+                icon={<UserIcon />}
+              />
+            </View>
+
+            <View>
+              <TextInputComponent
+                name="last_name"
+                placeholder="Last Name"
+                icon={<UserIcon />}
+              />
+            </View>
+
+            <View>
+              <PasswordInput name="password" placeholder="Password" />
+            </View>
+
+            <View>
+              <PasswordInput name="re_password" placeholder="Re-Password" />
+            </View>
+
             <View style={{ marginTop: 50 }}>
               <LoginButton handleSubmit={handleSubmit} loading={loading} />
-              <View style={{ marginTop: 20 }}>
-                <RegisterButton />
-              </View>
-              <View style={{ marginTop: 20 }}>
-                <ConnectWithGoogleButton />
-              </View>
             </View>
           </View>
         )}

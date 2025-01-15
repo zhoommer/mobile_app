@@ -3,6 +3,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 
 export default function useLoginTheme() {
   const { theme } = useTheme();
+
   const styles = StyleSheet.create({
     container: {
       display: "flex",
@@ -21,7 +22,7 @@ export default function useLoginTheme() {
       fontWeight: 900,
       fontSize: 35,
       textAlign: "center",
-      color: theme.colors.text_primary,
+      color: theme.colors.button_secondary,
     },
 
     iconBox: {
