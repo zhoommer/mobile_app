@@ -6,18 +6,17 @@ export default function useRegisterButtonTheme() {
 
   const styles = StyleSheet.create({
     text: {
-      color: "#fff",
+      color: theme.colors.button_text,
       fontSize: 18,
       fontWeight: 500,
       letterSpacing: 1,
       textDecorationStyle: "solid",
-      textDecorationColor: "#fff",
+      textDecorationColor: theme.colors.button_text,
       textDecorationLine: "underline",
       textAlign: "center",
-      marginTop: 40,
       padding: 10,
       borderRadius: 30,
-      backgroundColor: theme.colors.primary,
+      backgroundColor: theme.colors.button_secondary,
     },
   });
 

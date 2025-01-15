@@ -15,8 +15,8 @@ export default function LoginScreen() {
     <LinearGradient
       colors={
         theme === darkTheme
-          ? ["rgba(125,135,237,1)", "rgba(27,30,61,1)"]
-          : ["rgba(84,178,216,1)", "rgba(40,98,172,1)"]
+          ? ["rgba(18,18,18,1)", "rgba(27,30,61,1)"]
+          : ["rgba(245,250,255,1)", "rgba(40,98,172,1)"]
       }
       start={{ x: 0, y: 0 }}
       end={{ x: 0, y: 1 }}

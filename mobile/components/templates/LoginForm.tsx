@@ -6,6 +6,7 @@ import LoginButton from "../atoms/buttons/LoginButton";
 import RegisterButton from "../atoms/buttons/RegisterButton";
 import UserInput from "../organisms/UserInput";
 import PasswordInput from "../organisms/PasswordInput";
+import ConnectWithGoogleButton from "../atoms/buttons/ConnectWithGoogle";
 
 export default function LoginForm() {
   const { loading } = useAuth();
@@ -28,7 +29,12 @@ export default function LoginForm() {
             </View>
             <View style={{ marginTop: 50 }}>
               <LoginButton handleSubmit={handleSubmit} loading={loading} />
-              <RegisterButton />
+              <View style={{ marginTop: 20 }}>
+                <RegisterButton />
+              </View>
+              <View style={{ marginTop: 20 }}>
+                <ConnectWithGoogleButton />
+              </View>
             </View>
           </View>
         )}

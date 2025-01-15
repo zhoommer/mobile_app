@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
 import { useTheme } from "@/contexts/ThemeContext";
-useTheme;
 
 export default function useErrorTheme() {
   const { theme } = useTheme();
@@ -9,7 +8,7 @@ export default function useErrorTheme() {
       position: "absolute",
       bottom: -25,
       left: 20,
-      color: theme.colors.text,
+      color: theme.colors.error,
       fontSize: 14,
       fontWeight: 800,
     },

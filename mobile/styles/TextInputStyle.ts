@@ -7,8 +7,8 @@ export default function useInputTheme() {
   const textInputStyle = StyleSheet.create({
     input: {
       backgroundColor: "transparent",
-      color: theme.colors.text,
-      borderColor: theme.colors.border,
+      color: theme.colors.text_primary,
+      borderColor: theme.colors.text_secondary,
       borderBottomWidth: 3,
       paddingLeft: 60,
     },

@@ -21,7 +21,7 @@ export default function useLoginTheme() {
       fontWeight: 900,
       fontSize: 35,
       textAlign: "center",
-      color: "#1b1e3d",
+      color: theme.colors.text_primary,
     },
 
     iconBox: {
@@ -37,12 +37,12 @@ export default function useLoginTheme() {
       borderColor: "transparent",
       borderRadius: 250,
       borderCurve: "circular",
-      backgroundColor: theme.colors.primary,
+      backgroundColor: theme.colors.background,
       elevation: 30,
     },
 
     iconBoxInner: {
-      borderColor: "#334155",
+      borderColor: theme.colors.border,
       borderRadius: 200,
       borderWidth: 2,
       borderStyle: "solid",
