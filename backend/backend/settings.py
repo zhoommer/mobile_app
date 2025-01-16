@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-$q&+f*a47fn6nmy&!d=2o=pwgmzdp_wkhh0fp)-%f&n$_io%8&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.0.2.2']
+ALLOWED_HOSTS = ['127.0.0.1', '10.0.2.2', '.localhost', '192.168.1.100']
 
 
 # Application definition
@@ -86,10 +86,8 @@ SIMPLE_JWT = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-
-    "corsheaders.middleware.CorsMiddleware",
-
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
