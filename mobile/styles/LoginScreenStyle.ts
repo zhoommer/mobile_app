@@ -8,10 +8,9 @@ export default function useLoginTheme() {
     container: {
       display: "flex",
       flexDirection: "column",
-      height: 900,
       padding: 20,
+      height: 900,
       backgroundColor: theme.colors.background,
-      borderRadius: 20,
     },
 
     box_top: {

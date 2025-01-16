@@ -1,69 +1,97 @@
-import { useAuth } from "@/contexts/AuthContext";
-import useLoginForm from "@/hooks/useLoginForm";
 import { Formik } from "formik";
 import { View } from "react-native";
-import LoginButton from "../atoms/buttons/LoginButton";
 import PasswordInput from "../organisms/PasswordInput";
 import UserIcon from "../atoms/icons/UserIcon";
 import TextInputComponent from "../organisms/TextInput";
 import EmailIcon from "../atoms/icons/EmailIcon";
+import SubmitButton from "../atoms/buttons/SubmitButton";
+import VStack from "../atoms/stacks/VStack";
+import useRegisterForm from "@/hooks/useRegisterForm";
+import PhoneIcon from "../atoms/icons/PhoneIcon";
 
 export default function RegisterForm() {
-  const { loading } = useAuth();
-  const { initialState, validationSchema, handleLogin } = useLoginForm();
+  const { loading, initialState, validationSchema, handleRegister } =
+    useRegisterForm();
 
   return (
     <View>
       <Formik
         initialValues={initialState}
-        onSubmit={(values) => handleLogin(values)}
+        onSubmit={(values) => handleRegister(values)}
         validationSchema={validationSchema}
       >
-        {({ handleSubmit }) => (
-          <View>
-            <View>
-              <TextInputComponent
-                name="username"
-                placeholder="Username"
-                icon={<UserIcon />}
-              />
-            </View>
-            <View>
-              <TextInputComponent
-                name="email"
-                placeholder="Email"
-                icon={<EmailIcon />}
-              />
-            </View>
+        {({ handleSubmit, errors, touched }) => (
+          <VStack>
+            <TextInputComponent
+              name="username"
+              placeholder={
+                errors.username && touched.username
+                  ? errors.username
+                  : "Username"
+              }
+              icon={<UserIcon />}
+            />
+            <TextInputComponent
+              name="email"
+              placeholder={
+                errors.email && touched.email ? errors.email : "Email"
+              }
+              icon={<EmailIcon />}
+            />
 
-            <View>
-              <TextInputComponent
-                name="first_name"
-                placeholder="First Name"
-                icon={<UserIcon />}
-              />
-            </View>
+            <TextInputComponent
+              name="first_name"
+              placeholder={
+                errors.first_name && touched.first_name
+                  ? errors.first_name
+                  : "First name"
+              }
+              icon={<UserIcon />}
+            />
 
-            <View>
-              <TextInputComponent
-                name="last_name"
-                placeholder="Last Name"
-                icon={<UserIcon />}
-              />
-            </View>
+            <TextInputComponent
+              name="last_name"
+              placeholder={
+                errors.last_name && touched.last_name
+                  ? errors.last_name
+                  : "Last name"
+              }
+              icon={<UserIcon />}
+            />
 
-            <View>
-              <PasswordInput name="password" placeholder="Password" />
-            </View>
+            <TextInputComponent
+              name="phone_number"
+              placeholder={
+                errors.phone_number && touched.phone_number
+                  ? errors.phone_number
+                  : "Phone number"
+              }
+              icon={<PhoneIcon />}
+            />
+            <PasswordInput
+              name="password"
+              placeholder={
+                errors.password && touched.password
+                  ? errors.password
+                  : "Password"
+              }
+            />
 
-            <View>
-              <PasswordInput name="re_password" placeholder="Re-Password" />
-            </View>
+            <PasswordInput
+              name="re_password"
+              placeholder={
+                errors.re_password && touched.re_password
+                  ? errors.re_password
+                  : "Confirm password"
+              }
+            />
 
-            <View style={{ marginTop: 50 }}>
-              <LoginButton handleSubmit={handleSubmit} loading={loading} />
-            </View>
-          </View>
+            <SubmitButton
+              name="Register"
+              handleSubmit={handleSubmit}
+              loading={loading}
+            />
+          </VStack>
         )}
       </Formik>
     </View>

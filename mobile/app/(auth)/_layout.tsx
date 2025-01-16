@@ -7,7 +7,13 @@ export default function AuthLayout() {
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="login/index" />
-      <Stack.Screen name="register/index" />
+      <Stack.Screen
+        name="register/index"
+        options={{
+          headerShown: true,
+          headerTitle: "Register",
+        }}
+      />
     </Stack>
   );
 }
