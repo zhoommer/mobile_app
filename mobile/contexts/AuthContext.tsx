@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
-import { getToken, setToken } from "@/utils/tokenActions";
+import { getToken, removeToken, setToken } from "@/utils/tokenActions";
 import { useRouter } from "expo-router";
 import * as SecureStore from "expo-secure-store";
 import { AuthService } from "@/api/services/authService";
@@ -35,9 +35,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setLoading(true);
       const token = await getToken();
       if (token && token !== null) {
-        setUser({ isAuthenticated: true });
+        setUser({ isAuthenticated: true, token: token });
       } else {
-        setUser({ isAuthenticated: false });
+        setUser({ isAuthenticated: false, token: undefined });
+        removeToken();
       }
       setLoading(false);
     };

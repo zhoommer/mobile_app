@@ -1,9 +1,16 @@
+import { useTheme } from "@/contexts/ThemeContext";
 import Icon from "@expo/vector-icons/AntDesign";
 import { Tabs } from "expo-router";
 
 export default function TabLayout() {
+  const { theme } = useTheme();
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: "blue" }}>
+    <Tabs
+      screenOptions={{
+        tabBarActiveTintColor: "blue",
+        headerStyle: { backgroundColor: theme.colors.background },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{

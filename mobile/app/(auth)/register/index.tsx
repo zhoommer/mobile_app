@@ -22,16 +22,16 @@ export default function RegisterScreen() {
       end={{ x: 0, y: 1 }}
       style={styles.container}
     >
-      <View style={styles.box_top}>
-        <Text style={styles.box_top_title}>Welcome</Text>
-        <View style={styles.iconBox}>
-          <View style={styles.iconBoxInner}>
-            <LoginUserIcon />
-          </View>
-          <Circle />
-          <HalfCircle />
-        </View>
-      </View>
+      {/* <View style={styles.box_top}> */}
+      {/*   <Text style={styles.box_top_title}>Welcome</Text> */}
+      {/*   <View style={styles.iconBox}> */}
+      {/*     <View style={styles.iconBoxInner}> */}
+      {/*       <LoginUserIcon /> */}
+      {/*     </View> */}
+      {/*     <Circle /> */}
+      {/*     <HalfCircle /> */}
+      {/*   </View> */}
+      {/* </View> */}
 
       <View style={styles.box_bottom}>
         <RegisterForm />

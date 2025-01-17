@@ -1,7 +1,7 @@
 import axiosClient from "../axiosInstance";
 import type { LoginRequest } from "@/types/api/request/loginRequest";
 import { RegisterRequest } from "@/types/api/request/registerRequest";
-import type { LoginResponse } from "@/types/api/response/loginResponse";
+import type { LoginResponse } from "@/types/api/response/login";
 
 export class AuthService {
   private client = axiosClient;

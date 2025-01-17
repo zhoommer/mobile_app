@@ -3,5 +3,5 @@ import Icon from "@expo/vector-icons/Feather";
 
 export default function PhoneIcon() {
   const { iconStyle } = useIconTheme();
-  return <Icon name="phone" size={24} style={iconStyle.user} />;
+  return <Icon name="smartphone" size={24} style={iconStyle.user} />;
 }

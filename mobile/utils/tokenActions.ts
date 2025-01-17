@@ -1,4 +1,5 @@
 import * as SecureStore from "expo-secure-store";
+import { useRouter } from "expo-router";
 
 export const getToken = async (): Promise<string | null> => {
   try {
@@ -16,4 +17,11 @@ export const setToken = async (token: string): Promise<void> => {
   } catch (error) {
     console.error("Error saving token:", error);
   }
+};
+
+export const removeToken = async (): Promise<void> => {
+  const router = useRouter();
+  await SecureStore.deleteItemAsync("token");
+
+  router.push("/(auth)/login");
 };

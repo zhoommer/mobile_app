@@ -6,8 +6,8 @@ import TextInputComponent from "../organisms/TextInput";
 import EmailIcon from "../atoms/icons/EmailIcon";
 import SubmitButton from "../atoms/buttons/SubmitButton";
 import VStack from "../atoms/stacks/VStack";
-import useRegisterForm from "@/hooks/useRegisterForm";
 import PhoneIcon from "../atoms/icons/PhoneIcon";
+import useRegisterForm from "@/hooks/useRegisterForm";
 
 export default function RegisterForm() {
   const { loading, initialState, validationSchema, handleRegister } =
@@ -86,11 +86,13 @@ export default function RegisterForm() {
               }
             />
 
-            <SubmitButton
-              name="Register"
-              handleSubmit={handleSubmit}
-              loading={loading}
-            />
+            <View style={{ marginTop: 50 }}>
+              <SubmitButton
+                name="Register"
+                handleSubmit={handleSubmit}
+                loading={loading}
+              />
+            </View>
           </VStack>
         )}
       </Formik>
